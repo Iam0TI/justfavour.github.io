@@ -1,25 +1,26 @@
-
+// getting document id  
 const taskTitleInput = document.getElementById('task-title');
 const taskDateInput = document.getElementById('task-date');
 const addTaskButton = document.getElementById('add-task');
 const taskList = document.getElementById('task-list');
 const completedTaskList = document.getElementById('completed-task-list');
 
-
+// calling event listeners to handle  user  actions
 document.addEventListener('DOMContentLoaded', getTasks);
 addTaskButton.addEventListener('click', addTask);
 taskList.addEventListener('click', modifyTask);
 completedTaskList.addEventListener('click', modifyTask);
 
-
+// creating  a new task based on user input and adding it to the task list
 function addTask() {
     const taskTitle = taskTitleInput.value;
     const taskDate = taskDateInput.value;
+       // input validation 
     if (taskTitle === '' || taskDate === '') {
         alert('Please enter a task title and due date');
         return;
     }
-
+// create a task object
     const task = {
         id: Date.now().toString(),
         title: taskTitle,
@@ -28,12 +29,14 @@ function addTask() {
     };
 
     saveTask(task);
-    renderTask(task);
-
+    showTask(task);
+    
+ // to clear the input fields after adding the task.
     taskTitleInput.value = '';
     taskDateInput.value = '';
 }
-
+ 
+// to show all tasks
 function showTask(task) {
     const taskElement = document.createElement('li');
     taskElement.classList.add('task');
@@ -56,6 +59,7 @@ function showTask(task) {
     }
 }
 
+// handles task modifications
 function modifyTask(event) {
     const button = event.target;
     const taskElement = button.parentElement.parentElement;
@@ -69,6 +73,8 @@ function modifyTask(event) {
         deleteTask(taskId);
     }
 }
+
+
 
 function markTaskComplete(taskId) {
     let tasks = getTasksFromLocalStorage();
