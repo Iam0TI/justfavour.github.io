@@ -29,7 +29,7 @@ function addTask() {
     };
 
     saveTask(task);
-    showTask(task);
+    renderTask(task);
     
  // to clear the input fields after adding the task.
     taskTitleInput.value = '';
@@ -37,7 +37,7 @@ function addTask() {
 }
  
 // to show all tasks
-function showTask(task) {
+function renderTask(task) {
     const taskElement = document.createElement('li');
     taskElement.classList.add('task');
     taskElement.setAttribute('data-id', task.id);
@@ -74,9 +74,9 @@ function modifyTask(event) {
     }
 }
 
+// Toggles task as  complete
 
-
-function markTaskComplete(taskId) {
+function toggleTaskComplete(taskId) {
     let tasks = getTasksFromLocalStorage();
     tasks = tasks.map(task => {
         if (task.id === taskId) {
@@ -88,6 +88,8 @@ function markTaskComplete(taskId) {
     refreshTasks();
 }
 
+
+// edits a task
 function editTask(taskId) {
     let tasks = getTasksFromLocalStorage();
     const task = tasks.find(task => task.id === taskId);
@@ -103,6 +105,9 @@ function editTask(taskId) {
     }
 }
 
+
+// deletes a task
+
 function deleteTask(taskId) {
     let tasks = getTasksFromLocalStorage();
     tasks = tasks.filter(task => task.id !== taskId);
@@ -110,6 +115,7 @@ function deleteTask(taskId) {
     refreshTasks();
 }
 
+// save a task
 function saveTask(task) {
     const tasks = getTasksFromLocalStorage();
     tasks.push(task);
