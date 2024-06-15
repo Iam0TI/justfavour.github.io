@@ -4,7 +4,7 @@
 
 The Task Management Application is a simple web application that allows users to manage their tasks. Users can add, edit, delete tasks, and mark them as complete. The tasks are stored in the browser's local storage to persist data between sessions.
 
-**Live Website**: [www.just.com](http://www.justfavour.github.io)
+**Live Website**: [www.just.com](https://justfavour.github.io)
 
 ## Features
 
